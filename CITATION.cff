@@ -1,0 +1,15 @@
+# YAML 1.2
+---
+cff-version: "1.2.0"
+title: "mypkg"
+authors:
+  - family-names: Hafner
+    given-names: Flavio
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+date-released: 2025-03-20
+version: "0.1.0"
+repository-code: "https://github.com/f-fhafner/mypkg"
+keywords:
+  - "pytest"
+  - "interface"
+message: "If you use this software, please cite it using these metadata."

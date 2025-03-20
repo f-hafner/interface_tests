@@ -1,0 +1,19 @@
+# Changes here will be overwritten by Copier
+SelectCodeQualityFeatures:
+- AddLocalTests_flag
+- AddLinting_flag
+SelectCommunityFeatures: []
+SelectDocumentationFeatures: []
+SelectPublishReleaseFeatures: []
+_commit: 0.6.1
+_src_path: https://github.com/nlesc/python-template.git
+copyright_holder: Flavio Hafner
+email: hafner.flavio@gmail.com
+full_name: Flavio Hafner
+github_organization: f-fhafner
+keywords: pytest,interface
+license: Apachev2
+package_name: mypkg
+package_short_description: Testing interfaces with pytest
+template_profile: recommended
+version: 0.1.0
