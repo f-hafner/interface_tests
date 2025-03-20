@@ -1,21 +1,23 @@
 
 import pytest
-from mypkg.module_a import MyClassA
-from mypkg.module_b import MyClassB
+from mypkg.module_a.module_a import MyClassA
+from mypkg.module_b.module_b import MyClassB
 
-from .interface_test import test_interface
-from .interface_test import ALL_INTERFACE_TESTS
 
 @pytest.fixture(params=[MyClassA, MyClassB])
 def Implementation(request):
     return request.param
 
 
+def test_module_interface(Implementation, run_interface_tests):
+    run_interface_tests(Implementation)
+
+
 
 #@pytest.mark.parametrize("cls", [MyClassA, MyClassB])
-@pytest.mark.parametrize("test_func", ALL_INTERFACE_TESTS)
-def test_interface_wrapper(Implementation, test_func):
-    test_interface(Implementation, test_func)
+#@pytest.mark.parametrize("test_func", ALL_INTERFACE_TESTS)
+#def test_interface_wrapper(Implementation, all_interface_tests):
+#    test_interface(Implementation, all_interface_tests)
 
 # note: this is fine, but requires all of [MyClassA, MyClassB] to 
 # be installed in the environment. Thus, it will fail 

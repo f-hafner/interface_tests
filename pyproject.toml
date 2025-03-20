@@ -53,7 +53,7 @@ Repository = "https://github.com/f-fhafner/mypkg"
 Issues = "https://github.com/f-fhafner/mypkg/issues"
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "src/mypkg/module_a/tests/"]
 
 
 [tool.coverage.run]
