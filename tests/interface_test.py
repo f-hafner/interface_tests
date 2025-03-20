@@ -19,7 +19,6 @@ def test_method_returns_string(cls):
 def test_instance_creation(cls):
     print("\ncalled test_instance_creation")
     instance = cls()
-    instance = cls()
     assert instance is not None, "Instance should be created successfully"
 
 
@@ -36,5 +35,15 @@ ALL_INTERFACE_TESTS = [
 def test_interface(cls, test_func):
     test_func(cls)
 
+
+# so this could go into a conftest.py 
+# at the level of the library
+# it can then be used by any code 
+
+# how do we make it as easy as possible to use the 
+# test_interface function 
+
+# TODO: how do we add different parameters to the parameterize, if we need that?
+# what do we need? we need to dynamically determine the name of the 
 
 
