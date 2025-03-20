@@ -4,13 +4,16 @@ from mypkg.module_a.module_a import MyClassA
 from mypkg.module_b.module_b import MyClassB
 
 
-@pytest.fixture(params=[MyClassA, MyClassB])
-def Implementation(request):
-    return request.param
+from my_tests import test_interface
 
 
-def test_module_interface(Implementation, run_interface_tests):
-    run_interface_tests(Implementation)
+#@pytest.fixture(params=[MyClassA, MyClassB])
+#def Implementation(request):
+#    return request.param
+
+
+#def test_interface(Implementation, run_interface_tests):
+#    run_interface_tests(Implementation)
 
 
 
@@ -25,15 +28,3 @@ def test_module_interface(Implementation, run_interface_tests):
 
 # this is a nice option for the CI that tests all interfaces 
 
-
-###############################################
-# test individually
-#from .interface_test import test_method_exists # import appears as skipping the test_method
-#from .interface_test import test_method_returns_string
-#from .interface_test import test_instance_creation
-
-#@pytest.mark.parametrize("cls", [MyClassA, MyClassB])
-#def test_method_wrapped(cls):
-#    test_method_exists(cls)
-#    test_method_returns_string(cls)
-#    test_instance_creation(cls)

@@ -1,20 +1,17 @@
 import pytest
 
-def test_method_exists(cls):
+def test_method_exists(instance):
     print("\ncalled test_method_exists")
-    instance = cls()
     assert hasattr(instance, "method")
 
 
-def test_method_returns_string(cls):
+def test_method_returns_string(instance):
     print("\ncalled test_method_returns_string")
-    instance = cls()
     result = instance.method()
     assert isinstance(result, str), "Method must return a string"
 
-def test_instance_creation(cls):
+def test_instance_creation(instance):
     print("\ncalled test_instance_creation")
-    instance = cls()
     assert instance is not None, "Instance should be created successfully"
 
 
@@ -32,15 +29,21 @@ def interface_test_funcs():
 @pytest.fixture()
 def run_interface_tests(interface_test_funcs):
     def _run(implementation_class):
-        # Instantiate the implementation
-        impl = implementation_class
-
+        impl = implementation_class()
         # Run each test function with the implementation
         for test_func in interface_test_funcs:
             test_func(impl)
 
     return _run
 
+
+
+from mypkg.module_a.module_a import MyClassA
+from mypkg.module_b.module_b import MyClassB
+
+@pytest.fixture(params=[MyClassA, MyClassB])
+def Implementation(request):
+    return request.param
 
 
 
