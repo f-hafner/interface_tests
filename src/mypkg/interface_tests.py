@@ -4,13 +4,12 @@
 def test_interface(Implementation, run_interface_tests):
     run_interface_tests(Implementation)
 
-# Define modules to be tested
-from mypkg.module_a.module_a import MyClassA
-from mypkg.module_b.module_b import MyClassB
-
-module_map = {
-        "test_module_a": MyClassA,
-        "test_module_b": MyClassB
+# map files of tests to imports and classes
+import_map = {
+        "test_module_a": ("mypkg.module_a.module_a", "MyClassA"),
+        "test_module_b": ("mypkg.module_b.module_b", "MyClassB"),
+        # we can also add unavailable modules
+        "test_module_c": ("mypkg.module_c.module_c", "MyClassC"),
         }
 
 # Define interface tests
