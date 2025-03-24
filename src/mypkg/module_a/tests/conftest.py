@@ -37,14 +37,28 @@ def run_interface_tests(interface_test_funcs):
     return _run
 
 
-
+# This should not be necessary
 from mypkg.module_a.module_a import MyClassA
 from mypkg.module_b.module_b import MyClassB
 
-@pytest.fixture(params=[MyClassA, MyClassB])
-def Implementation(request):
-    return request.param
+module_map = {
+        "test_module_a": MyClassA,
+        "test_module_b": MyClassB
+        }
 
+#@pytest.fixture(params=[MyClassA, MyClassB])
+#def Implementation(request):
+#    return request.param
+
+def pytest_generate_tests(metafunc): # this is called only once
+    if metafunc.function.__name__ == "test_interface":
+        calling_module = metafunc.module.__name__
+        metafunc.parametrize("Implementation", [module_map[calling_module]])
+        #mymodule = metafunc.module
+        #myvars = vars(mymodule)
+        #myvars["MyClassA"] # this is from the module import in test_module_a?
+        # metafunc.module gives /path/to/test_module_a
+        #print("hello.")
 
 
 

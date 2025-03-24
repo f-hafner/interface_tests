@@ -1,9 +1,10 @@
 
 import pytest
-from mypkg.module_a.module_a import MyClassA
-from mypkg.module_b.module_b import MyClassB
+#from mypkg.module_a.module_a import MyClassA
+#from mypkg.module_b.module_b import MyClassB
 
 
+#from mypkg.module_a.module_a import MyClassA as class_to_be_tested
 from my_tests import test_interface
 
 
