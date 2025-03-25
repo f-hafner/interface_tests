@@ -55,7 +55,9 @@ Issues = "https://github.com/f-fhafner/mypkg/issues"
 [tool.pytest.ini_options]
 testpaths = ["tests", 
              "src/mypkg/module_a/tests/",
-             "src/mypkg/module_b/tests/"]
+             "src/mypkg/module_b/tests/",
+             "src/mypkg/module_c/tests/"
+             ]
 
 
 [tool.coverage.run]
