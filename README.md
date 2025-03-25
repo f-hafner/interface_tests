@@ -4,7 +4,7 @@
 This repository is a barebone package to explore how to implement reusable tests for multiple implementations of the same interface.
 
 The structure is as follows
-- `src/mypkg` has multiple modules `module_a`, `module_b`, `module_c`. They all implement the same interface: they contain a class `MyClassX` where `X` is a letter that has a method `method`.
+- `src/mypkg` has multiple modules `module_a`, `module_b`, `module_c`. They all implement the same interface: they contain a class `MyClassX` that has a method `method`.
 - Each module has its own test directory, ie `src/mypkg/module_a/tests`. 
 - In each module-specific test, we'd like to make it as easy as possible to run standard tests for the implementation of the interface. This is done with 
     ```python
