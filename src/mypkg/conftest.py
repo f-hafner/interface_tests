@@ -6,15 +6,11 @@ from mypkg.interface_tests import ALL_INTERFACE_TESTS
 
 
 @pytest.fixture()
-def interface_test_funcs():
-    return ALL_INTERFACE_TESTS
-
-@pytest.fixture()
-def run_interface_tests(interface_test_funcs):
+def run_interface_tests():
     def _run(implementation_class):
         impl = implementation_class()
         # Run each test function with the implementation
-        for test_func in interface_test_funcs:
+        for test_func in ALL_INTERFACE_TESTS:
             test_func(impl)
 
     return _run
@@ -33,7 +29,5 @@ def pytest_generate_tests(metafunc):
             metafunc.parametrize("Implementation", [implementation])
         else:
             pytest.skip(f"No class {r_cls} in module {r_mod}")
-            # TODO: this might be improved as in https://stackoverflow.com/questions/33400071/skip-parametrized-tests-generated-by-pytest-generate-tests-at-module-level
-        #metafunc.parametrize("Implementation", [module_map[calling_module]])
 
 
