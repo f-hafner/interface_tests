@@ -8,24 +8,25 @@ The structure is as follows
 - Each module has its own test directory, ie `src/mypkg/module_a/tests`. 
 - In each module-specific test, we'd like to make it as easy as possible to run standard tests for the implementation of the interface. This is done with 
     ```python
-    from mypkg.interface_tests import test_interface
+    from mypkg.interface_tests import *
     ```
-- `pytest` executes `test_interface` when it discovers the test file
-- This led to the following requirements:
-    - we need to dynamically determine which module to test from the calling test function alone
-    - for any user running the test, they may not have installed all modules that implement the interface. Therefore, we have to dynamically determine which tests to run
+- `pytest` executes all tests defined in `interface_tests` when it discovers the test file
 
 ### Implementation
 
 I built this functionality with pytest fixtures and hooks.
 In `src/mypkg/interface_tests.py`
 - define all tests for the interface 
-- map from calling functions to modules to be imported and classes to be passed to the test
 
-In `src/mypkg/conftest.py`
-- import things defined in `interface_tests.py`
-- define fixture `run_interface_tests`, which takes a dynamic implementation_class and runs all tests on that
-- `pytest_generate_tests` hook detects the function `test_interface`, and dynamically returns the class to be tested that implements the interface. If the requested module is not importable, the test is skipped.
+To test the interface, each module needs to define 2 things:
+- the fixture `nbody_instance`, which returns an instantiated class of the nbody code to test 
+- an import `from mypkg.interface_tests import *` inside `module_x/tests/test_some_file.py`
+
+Pytest discovers fixtures from where it is called, and searches conftest files from the directory upwards. Thus, it is important to define the fixture for each code inside their respective code's directory (`src/mypkg/module_a/confest.py`).
+
+The biggest limitation in this approach is when running `pytest` from root, tests will fail for codes that are not implemented. However, this does not seem to conflict with the testing workflow in amuse: invoking tests through `./setup test bhtree` works because it first `cd`s into the `bhtree` directory, and then runs pytest from there. In this case, pytest only runs the local tests.
+
+In addition, this approach allows specifying the `nbody_instance` more flexibly with additional parameters if necessary.
 
 ## Installation
 

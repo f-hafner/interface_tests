@@ -2,19 +2,19 @@
 
 
 # Define interface tests
-def test_method_exists(instance):
+def test_method_exists(nbody_instance):
     print("\ncalled test_method_exists")
-    assert hasattr(instance, "method")
+    assert hasattr(nbody_instance, "method")
 
 
-def test_method_returns_string(instance):
+def test_method_returns_string(nbody_instance):
     print("\ncalled test_method_returns_string")
-    result = instance.method()
+    result = nbody_instance.method()
     assert isinstance(result, str), "Method must return a string"
 
-def test_instance_creation(instance):
+def test_instance_creation(nbody_instance):
     print("\ncalled test_instance_creation")
-    assert instance is not None, "Instance should be created successfully"
+    assert nbody_instance is not None, "Instance should be created successfully"
 
 
 
