@@ -2,7 +2,7 @@
 import pytest
 
 
-from mypkg.interface_tests import test_interface
+from mypkg.interface_tests import *
 
 #@pytest.fixture(params=[MyClassA, MyClassB])
 #def Implementation(request):
